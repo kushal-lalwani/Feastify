@@ -1,3 +1,38 @@
-#container{
-    background: lightblue;
-}
+.header {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 0 20px;
+    border: 1px solid black;
+    align-items: center;
+  }
+  
+  .logo {
+    width: 85px;
+    cursor: pointer;
+  }
+  
+  .nav-items > ul {
+    font-size: 20px;
+    display: flex;
+    list-style-type: none;
+  }
+  
+  .nav-items > ul > li {
+    cursor: pointer;
+    padding:4px 10px;
+    margin: 10px;
+  }
+  .card{
+    width:200px;
+    margin:10px;
+    padding:12px;
+    border:1px solid black;
+  }
+  .card > img{
+    width: 100%;
+  }
+  .Restraunts{
+    display: flex;
+    flex-wrap: wrap;
+  }
