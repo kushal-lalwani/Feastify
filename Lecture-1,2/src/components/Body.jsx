@@ -1,11 +1,7 @@
-import restaurantData from "../utils/Data";
-import { RestaurantCard } from "./RestaurantCard";
+
+import { RestaurantCard } from "./RestaurantCard.jsx";
 import React, { useEffect, useState } from 'react';
-import Shimmer from './Shimmer.js'
-
-
-
-
+import Shimmer from './Shimmer.jsx'
 
 
 
@@ -36,9 +32,7 @@ export const Body = () => {
   return (restaurants.length === 0) ? (
     <div className="Restaurants">
       {Array.from({ length: 12 }).map(() => (
-        <div className="card">
-          <Shimmer />
-        </div>
+        <Shimmer />
       ))}
 
     </div>) : (

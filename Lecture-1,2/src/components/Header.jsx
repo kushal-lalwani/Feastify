@@ -1,18 +1,21 @@
+import Logo from "../assets/img/logo.png"
+import { Link } from "react-router-dom";
+
 export const Header = () => {
     return (
       <div className="header">
         <div className="logo-container">
           <img
-            src="https://png.pngtree.com/png-vector/20230217/ourmid/pngtree-food-logo-design-for-restaurant-and-business-png-image_6604922.png"
+            src={Logo}
             alt="App Logo"
             className="logo"
           />
         </div>
         <div className="nav-items">
           <ul>
-            <li>Home</li>
-            <li>About Us</li>
-            <li>Contact Us</li>
+            <li><Link to='/'>Home</Link></li>
+            <li><Link to='/about'>About Us</Link></li>
+            <li><Link to='/contact'>Contact</Link></li>
             <li>Cart</li>
           </ul>
         </div>
