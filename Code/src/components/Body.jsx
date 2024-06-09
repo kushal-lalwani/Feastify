@@ -23,8 +23,8 @@ export const Body = () => {
     const onlineStatus = useOnlineStatus();
     if(onlineStatus === false) return <h1>Looks Like You are Offline...</h1>
     return restaurants.length === 0 ? (
-      <div className="Restaurants">
-            {Array.from({ length: 12 }).map((index) => (
+      <div className="Restaurants flex flex-wrap mt-16">
+            {Array.from({ length: 20 }).map((index) => (
               <Shimmer key={index}/>
             ))}
         </div>
@@ -33,14 +33,14 @@ export const Body = () => {
             <div className='search-container'>
                 <input
                     type='text'
-                    className='search-bar'
+                    className='search-bar m-4 py-1 px-4 border border-solid rounded-lg border-black'
                     value={searchText}
                     placeholder='Search'
                     onChange={e => setSearchText(e.target.value)}
                     />
-                <button onClick={() => searchRestaurants(searchText)}>Submit</button>
+                <button onClick={() => searchRestaurants(searchText)} className="px-2 py-1 bg-green-200 rounded-lg">Submit</button>
             </div>
-            <div className='Restaurants'>
+            <div className='Restaurants flex flex-wrap'>
                 {searchedRestaurants.map(restaurant => (
                   <RestaurantCard {...restaurant.info} key={restaurant.info.id} />
                 ))}

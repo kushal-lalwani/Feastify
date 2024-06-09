@@ -1,0 +1,7 @@
+{
+    "editor.fontFamily": "Consolas, 'Courier New', monospace",
+    "editor.wordWrap": "on",
+    "editor.minimap.autohide": true,
+    "editor.minimap.scale": 1,
+    "editor.minimap.renderCharacters": false
+}

@@ -9,7 +9,6 @@ const useRestaurants = () => {
         const jsonData = await data.json()
         const restaurants = jsonData?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants
         setRestaurants(restaurants);
-        
         // setSearchedRestaurants(restaurants);
     
     }
