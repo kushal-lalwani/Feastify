@@ -3,57 +3,111 @@ import { useParams } from "react-router-dom";
 import { MENU_API } from "../utils/constants";
 import { IMAGE_URL } from "../utils/constants";
 import Shimmer from "./Shimmer";
-import useRestaurantMenu from "../utils/useRestaurantMenu";
-
+import useRestaurantMenu from "../utils/useRestaurantMenu.jsx";
+import RestaurantCategory from "./RestaurantCategory.jsx";
 
 const RestaurantMenu = () => {
-//   const [restaurantMenuData, setRestaurantMenuData] = useState();
-//   const [restaurantMenu, setRestaurantMenu] = useState();
   const params = useParams();
 
+  const restaurantMenuData = useRestaurantMenu(params.id);
+  if (restaurantMenuData == null) return <Shimmer />;
 
-// useEffect(() => {
-//   getRestaurantMenuData();
-// }, []);
+  const categories =
+    restaurantMenuData.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter(
+      (c) =>c?.card?.card?.["@type"] =="type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
+    );
 
 
-
-// async function getRestaurantMenuData() {
-//   const data = await fetch(MENU_API + params.id);
-//   const json = await data.json();
-//   console.log();
-//   setRestaurantMenuData(json.data);
-//   setRestaurantMenu(json.data.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card?.card?.itemCards )
-//   console.log(restaurantMenu);
-//   }
-    
-const restaurantMenuData = useRestaurantMenu(params.id)
-console.log(restaurantMenuData);
-
-    // if (itemCards) return <Shimmer />
-    if (restaurantMenuData == null) return <Shimmer />;
   return (
     <div className="menu">
-      <div>
-      <h1>Restaurant id : {params.id}</h1>
-      {/* <h1>Restaurant Name : {restaurantMenu.name}</h1>  */}
-      <img
-        src={
-          IMAGE_URL + restaurantMenuData?.cards[2].card.card.info.cloudinaryImageId
-        }
-        alt=""
-      />
-      </div>
-      
-      <div >
-        <h1>Menu</h1>
-        {restaurantMenuData.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card?.card?.itemCards.map((item,index) => (
-          <h2 key={index}>{item?.card?.info?.name}</h2>
-        ))}
-      </div>
+      <h1 className="font-semibold text-2xl text-center">{restaurantMenuData?.cards[0]?.card?.card.text}</h1>
+      {categories.map((category) => (
+        <RestaurantCategory data={category?.card?.card} />
+      ))}
+
     </div>
   );
 };
 
-
 export default RestaurantMenu;
+
+/**
+Array(5)
+0
+: 
+card
+: 
+@type
+: 
+"type.googleapis.com/swiggy.presentation.food.v2.Dish"
+analytics
+: 
+{}
+hideRestaurantDetails
+: 
+true
+info
+: 
+addons
+: 
+(4) [{…}, {…}, {…}, {…}]
+badgesV2
+: 
+{}
+category
+: 
+"Starters & Soup"
+description
+: 
+"Serves 1 | (Spicy) Cubes Of Paneer, Onion, Capsicum Tossed With Spicy & Savory flavors of Hunan Sauce."
+finalPrice
+: 
+17900
+id
+: 
+"137410096"
+imageId
+: 
+"FOOD_CATALOG/IMAGES/CMS/2024/6/7/a05bf8ea-ee68-4fd8-be01-1ac10f940fa5_c8e1a500-cd36-4f60-a771-1e5cf22e73c4.jpg_compressed"
+inStock
+: 
+1
+isVeg
+: 
+1
+itemAttribute
+: 
+{vegClassifier: 'VEG', portionSize: 'Serves 1'}
+itemBadge
+: 
+{}
+itemNudgeType
+: 
+"FinalPrice"
+itemPriceStrikeOff
+: 
+true
+name
+: 
+"Hunan Paneer Dry"
+offerTags
+: 
+[{…}]
+price
+: 
+36900
+ratings
+: 
+{aggregatedRating: {…}}
+ribbon
+: 
+{}
+showImage
+: 
+true
+variants
+: 
+{}
+variantsV2
+: 
+{} */
