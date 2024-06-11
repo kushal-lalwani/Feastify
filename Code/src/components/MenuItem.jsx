@@ -2,8 +2,7 @@ import React from 'react'
 import { MENU_IMAGE } from '../utils/constants';
 
 const MenuItem = ({items}) => {
-    console.log(items);
-
+  
 
   return (
     <div>
@@ -23,12 +22,15 @@ const MenuItem = ({items}) => {
           <button className='text-green-500 border-2 p-2 font-bold rounded-lg mt-6'>ADD</button>
           </div>
           
+
           <div className="h-40 w-3/12">
-            <img
+          {item?.card?.info?.showImage 
+          ? (<img
               className="h-full w-full"
               src={MENU_IMAGE + item?.card?.info.imageId}
               alt=""
-            />
+            />) : (<div></div>)
+          }
           </div>
         </div>
       ))}
